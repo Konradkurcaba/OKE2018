@@ -9,7 +9,6 @@ public class Constants {
 	
 	public static List<String> getTypesList()
 	{
-		
 		List<String> TYPES_LIST = new ArrayList<>();
 		TYPES_LIST.add("http://dbpedia.org/ontology/Activity");
 		TYPES_LIST.add("http://dbpedia.org/ontology/Deity");

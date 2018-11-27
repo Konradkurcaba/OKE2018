@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -26,17 +27,16 @@ import org.nlp2rdf.parser.Document;;
 public class App {
 	public static void main(String[] args) throws IOException {
 
+		NifParser parser = new NifParser();
+		String text = parser.getTextFromFile(new File("NIF.xml"));
+		Stopwords stopwords = new Stopwords();
+		text = stopwords.deleteStopWords(text);
 		RdfQueryManager queryManager = new RdfQueryManager();
-		System.out.println(queryManager.checkWord("Poland"));
+		
+		Arrays.stream(text.split(" "))
+		.forEach(word -> {
+			if(queryManager.checkWord(word)) System.out.println(word);
+		});
  
 	}
-
-	public String getText(File aFile) throws IOException {
-		InputStream in = new FileInputStream(aFile);
-		String theString = IOUtils.toString(in);
-		NIFParser parser = new NIFParser(theString);
-		Document document = parser.getDocumentFromNIFString(theString);
-		return document.getText();
-	}
-
 }
