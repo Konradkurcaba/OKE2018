@@ -2,6 +2,7 @@ package projekt.rdf;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
@@ -15,21 +16,20 @@ import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
 public class RdfQueryManager {
 	
-	public boolean checkWord(String aWord)
+	public Optional<String> checkPhrase(String aPhrase)
 	{
-		List<String> wordTypesList =  getWordType(aWord);
+		List<String> wordTypesList =  getWordType(aPhrase);
 		
-		if(wordTypesList.stream()
-		.anyMatch(word -> {
-			if (Constants.getTypesList().contains(word))return true;
+		 Optional<String> foundType = wordTypesList.stream()
+		.filter(word -> {
+			if (Constants.getTypesList().contains(word)) return true;
 			else return false;
 		})
-		) return true;
-		else return false;
-		
+		.findFirst();
+		 
+		 return foundType;
+		 
 	}
-	
-	
 	public List<String> getWordType(String aWord) {
 		String queryValue = "PREFIX dbres: <http://dbpedia.org/resource/> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
 				+ "select ?o where {dbres:"+ aWord + " rdf:type ?o}";		

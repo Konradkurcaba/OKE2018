@@ -33,10 +33,14 @@ public class App {
 		text = stopwords.deleteStopWords(text);
 		RdfQueryManager queryManager = new RdfQueryManager();
 		
-		Arrays.stream(text.split(" "))
-		.forEach(word -> {
-			if(queryManager.checkWord(word)) System.out.println(word);
-		});
+//		Arrays.stream(text.split(" "))
+//		.forEach(word -> {
+//			if(queryManager.checkWord(word)) System.out.println(word);
+//		});
+		
+		TextProcessing processing = new TextProcessing();
+		processing.processText(text);
+		
  
 	}
 }

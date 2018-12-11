@@ -22,6 +22,8 @@ public class Constants {
 		TYPES_LIST.add("http://dbpedia.org/ontology/Place");
 		TYPES_LIST.add("http://dbpedia.org/ontology/Species");
 		TYPES_LIST.add("http://dbpedia.org/ontology/Work");
+		TYPES_LIST.add("http://dbpedia.org/ontology/Person");
+		TYPES_LIST.add("http://dbpedia.org/ontology/Organisation");
 		return TYPES_LIST;
 		
 	}
