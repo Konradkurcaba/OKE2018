@@ -17,13 +17,10 @@ public class TextProcessing {
 
 	private static int WINDOW_SIZE = 3;
 
-	public void processText(String aInputText) throws FileNotFoundException, IOException {
+	public HashMap<String, String> processText(String aInputText) throws FileNotFoundException, IOException {
 		Stopwords stopwords = new Stopwords();
 		String deletedStopwordsText = stopwords.deleteStopWords(aInputText);
 		String[] splitedText = deletedStopwordsText.split(" ");
-
-		
-
 		HashMap<String, String> resultEntities = new HashMap<>();
 
 		for (int i = WINDOW_SIZE; i > 0; i--) {
@@ -31,7 +28,7 @@ public class TextProcessing {
 			splitedText = checkText(splitedText, i, resultEntities);
 		}
 
-		System.out.println(resultEntities);
+		return resultEntities;
 	}
 
 

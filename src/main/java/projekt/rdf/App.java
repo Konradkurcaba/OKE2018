@@ -2,6 +2,7 @@ package projekt.rdf;
 
 import java.io.File;
 
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,29 +19,31 @@ import org.nlp2rdf.bean.NIFBean;
 import org.nlp2rdf.bean.NIFType;
 import org.nlp2rdf.nif20.impl.NIF20;
 import org.nlp2rdf.nif21.impl.NIF21;
-import org.nlp2rdf.parser.Document;;
+import org.nlp2rdf.parser.Document;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.application.Application;
 /**
  * Hello world!
  *
  */
-public class App {
-	public static void main(String[] args) throws IOException {
+public class App extends Application {
+	
+	public static void main(String... args) {
+	        launch();
+	}
 
-		NifParser parser = new NifParser();
-		String text = parser.getTextFromFile(new File("NIF.xml"));
-		Stopwords stopwords = new Stopwords();
-		text = stopwords.deleteStopWords(text);
-		RdfQueryManager queryManager = new RdfQueryManager();
-		
-//		Arrays.stream(text.split(" "))
-//		.forEach(word -> {
-//			if(queryManager.checkWord(word)) System.out.println(word);
-//		});
-		
-		TextProcessing processing = new TextProcessing();
-		processing.processText(text);
-		
- 
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Oke2018Gui.fxml"));
+		Parent root = loader.load();
+		GuiController controller = loader.getController();
+		controller.init();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
 	}
 }

@@ -25,5 +25,12 @@ public class NifParser {
 		Document document = parser.getDocumentFromNIFString(theString);
 		return document.getText();
 	}
+	
+	public String getTextFromString(String aText)
+	{
+		NIFParser parser = new NIFParser(aText);
+		Document document = parser.getDocumentFromNIFString(aText);
+		return document.getText();
+	}
 
 }
