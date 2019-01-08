@@ -30,6 +30,7 @@ public class NifParser {
 	{
 		NIFParser parser = new NIFParser(aText);
 		Document document = parser.getDocumentFromNIFString(aText);
+		document.getEntities();
 		return document.getText();
 	}
 

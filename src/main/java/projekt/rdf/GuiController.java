@@ -4,9 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 
 public class GuiController {
@@ -20,33 +24,25 @@ public class GuiController {
 	@FXML
 	private Button okButton;
 	
+	@FXML
+	private ProgressIndicator progressIndicator;
 	
 	public void init()
 	{
+		progressIndicator.setVisible(false);
 		okButton.setOnAction(event ->{
+			progressIndicator.setVisible(true);
+			String sourceText = sourceArea.getText();
 			
-			String source = sourceArea.getText();
-			
-			NifParser parser = new NifParser();
-			String text = parser.getTextFromString(source);
-			Stopwords stopwords = new Stopwords();
-			try {
-				text = stopwords.deleteStopWords(text);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			RdfQueryManager queryManager = new RdfQueryManager();
-			
-			TextProcessing processing = new TextProcessing();
-			HashMap<String, String> resultEntities = null;
-			try {
-				resultEntities = processing.processText(text);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			targetArea.setText(resultEntities.toString());
+			IdentifyService identifyService = new IdentifyService(sourceText);
+			identifyService.setOnSucceeded(success ->{
+				targetArea.setText(identifyService.getValue());
+				progressIndicator.setVisible(false);
+			});
+			identifyService.setOnFailed(failed ->{
+				
+			});
+			identifyService.start();
 			
 		});
 	}

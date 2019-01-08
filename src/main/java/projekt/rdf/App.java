@@ -43,6 +43,7 @@ public class App extends Application {
 		GuiController controller = loader.getController();
 		controller.init();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("/syle.css");
         primaryStage.setScene(scene);
         primaryStage.show();
 	}
