@@ -1,6 +1,4 @@
-/*.root{
-	-fx-background-image: url('/image.png')
-}
+/*
 
 .button{
     -fx-text-fill: rgb(49, 89, 23);
@@ -10,3 +8,26 @@
 }
 
 */
+.button {
+  -fx-background-color: #777777; 
+  -fx-border: 2px solid #ffffff;
+  -fx-text-fill: rgb(255,255,255);
+  -fx-padding: 15px 32px;
+  -fx-text-align: center;
+  -fx-font-weight: bold;
+  -fx-font-family: Century Gothic;
+  -fx-display: inline-block;
+  -fx-font-size: 16px;
+  -fx-border-radius: 8px;
+  -fx--webkit-transition-duration: 0.4s; 
+  -fx-transition-duration: 0.4s;
+}
+.button:hover {
+  -fx-background-color: #595959; 
+  -fx-color: #999999;
+  -fx-box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.root{
+	-fx-background-color: rgb(30, 61, 61);
+}

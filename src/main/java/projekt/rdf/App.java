@@ -45,6 +45,7 @@ public class App extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/syle.css");
         primaryStage.setScene(scene);
+        primaryStage.setTitle("OKE2018 - Chojnacka, Kurcaba, Zdrojewska");
         primaryStage.show();
 	}
 }
